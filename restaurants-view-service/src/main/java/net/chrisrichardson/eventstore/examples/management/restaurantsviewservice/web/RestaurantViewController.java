@@ -18,11 +18,22 @@ public class RestaurantViewController {
 
   @Autowired
   private RestaurantQuerySideRedisService restaurantQuerySideRedisService;
+  
+  int queriesCount=0;
 
   @RequestMapping(value = "/{id}", method = RequestMethod.GET)
   public ResponseEntity<RestaurantInfo> findRestaurant(@PathVariable("id") String restaurantId) {
-    RestaurantInfo r = restaurantQuerySideRedisService.findById(restaurantId);
-    return r == null ?  new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(r);
+  	
+  	queriesCount=queriesCount+1;
+  	
+  	if( (queriesCount==3) || (queriesCount==6) || (queriesCount==9) ){
+  		return 	new ResponseEntity
+  	}
+  	
+  	else{
+  		RestaurantInfo r = restaurantQuerySideRedisService.findById(restaurantId);
+   		return r == null ?  new ResponseEntity<>(HttpStatus.NOT_FOUND) : ResponseEntity.ok(r);
+  	}
   }
 
   @RequestMapping(value = "/availablerestaurants", method = RequestMethod.GET)
