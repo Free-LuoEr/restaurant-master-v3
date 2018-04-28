@@ -27,7 +27,7 @@ public class RestaurantViewController {
   	queriesCount=queriesCount+1;
   	
   	if( (queriesCount==3) || (queriesCount==6) || (queriesCount==9) ){
-  		return 	new ResponseEntity
+  		return 	new ResponseEntity<>(HttpStatus.NOT_FOUND);
   	}
   	
   	else{
