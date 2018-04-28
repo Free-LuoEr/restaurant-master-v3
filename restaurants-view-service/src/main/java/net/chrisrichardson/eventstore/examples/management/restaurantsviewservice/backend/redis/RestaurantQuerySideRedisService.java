@@ -80,7 +80,9 @@ public class RestaurantQuerySideRedisService implements RestaurantQuerySideServi
     @Override
     public List<RestaurantInfo> findAvailableRestaurants(Address deliveryAddress, DeliveryTime deliveryTime) {
         String zipCode = deliveryAddress.getZip();
+        String zipCode = zipCode.replace("00","23");  //Ìæ»»×Ö·û´®ÓÊ±àµÄ
         int dayOfWeek = deliveryTime.getDayOfWeek();
+        dayOfWeek=dayOfWeek+1;
         int timeOfDay = deliveryTime.getTimeOfDay();
         String closingTimesKey = closingTimesKey(zipCode, dayOfWeek);
 
